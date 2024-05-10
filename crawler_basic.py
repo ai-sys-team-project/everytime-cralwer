@@ -5,6 +5,9 @@
 동아리, 학회: 418760 - 재은
 인사캠 자유게시판: 370444 - 상지
 정보게시판: 375130 - 태웅
+
+아이디 seinundzeit1
+비밀번호 s9hkfm$w 
 """
 import datetime
 from datetime import datetime
@@ -19,13 +22,13 @@ from selenium.webdriver.chrome.service import Service
 
 from webdriver_manager.chrome import ChromeDriverManager
 
-ID = ''
-PWD = ''
+ID = 'seinundzeit1'
+PWD = 's9hkfm$w'
 
 BOARD_NUMBER = '375132' # 성대 새내기 게시판
 BASE_URL = f'https://everytime.kr/{BOARD_NUMBER}'
-PAGE_FROM = 1
-PAGE_TO = 1000
+PAGE_FROM = 101 #  # 101, 1001
+PAGE_TO = 1001
 
 BREAK_DATE = '23/05/08'
 TODAY = datetime.today().strftime('%m/%d')
@@ -66,7 +69,7 @@ def extract_comments(div_comments):
 
 
 
-def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODAY):
+def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODAY, page_from=PAGE_FROM, page_to=PAGE_TO):
     start_time = datetime.now()
     print('Start time: ', start_time)
     print('Break date: ', BREAK_DATE )
@@ -90,7 +93,7 @@ def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODA
     likes, scrapes = 0, 0
     
 
-    for page_num in range({PAGE_FROM}, {PAGE_TO}+1): # 101, 1001 # 새내기: 1 ~ 1840까지가 1년치 
+    for page_num in range({page_from}, {page_to}+1): # 101, 1001 # 새내기: 1 ~ 1840까지가 1년치 
         page_url = f"{BASE_URL}/p/{page_num}"
         driver.get(page_url)
         driver.implicitly_wait(3)
