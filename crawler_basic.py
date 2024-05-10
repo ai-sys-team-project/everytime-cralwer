@@ -74,11 +74,11 @@ def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODA
     print('Start time: ', start_time)
     print('Break date: ', BREAK_DATE )
 
-    driver.get(BASE_URL)
+    driver.get(base_url)
     driver.implicitly_wait(2)
 
-    driver.find_element(By.NAME, 'id').send_keys(ID)
-    driver.find_element(By.NAME, 'password').send_keys(PWD)
+    driver.find_element(By.NAME, 'id').send_keys(id)
+    driver.find_element(By.NAME, 'password').send_keys(pwd)
     driver.find_element(By.CSS_SELECTOR, 'input[type="submit"]').click()
     driver.implicitly_wait(2)
 
@@ -93,8 +93,8 @@ def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODA
     likes, scrapes = 0, 0
     
 
-    for page_num in range({page_from}, {page_to}+1): # 101, 1001 # 새내기: 1 ~ 1840까지가 1년치 
-        page_url = f"{BASE_URL}/p/{page_num}"
+    for page_num in range(page_from, page_to+1): # 101, 1001 # 새내기: 1 ~ 1840까지가 1년치 
+        page_url = f"{base_url}/p/{page_num}"
         driver.get(page_url)
         driver.implicitly_wait(3)
         sleep(2)
@@ -103,7 +103,7 @@ def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODA
 
         time_elements = driver.find_elements(By.CSS_SELECTOR, 'div.info time.small')
         print('time_elements: ', time_elements[0].text.split(' ')[0])
-        if time_elements[0].text.split(' ')[0] == BREAK_DATE:
+        if time_elements[0].text.split(' ')[0] == break_date:
             break
         else: 
             pass
@@ -113,8 +113,8 @@ def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODA
             date = time_element.text.split(' ')[0]
             
             if '/' not in date:
-                date = TODAY
-            if date == BREAK_DATE:
+                date = today
+            if date == break_date:
                 break
 
             times.append(date)
@@ -130,11 +130,11 @@ def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODA
         time_element = driver.find_element(By.XPATH, '//time[@class="large"]')
         date = time_element.text.split(' ')[0]
 
-        if date == BREAK_DATE:
+        if date == break_date:
             break
         
         if '/' not in date:
-            date = TODAY
+            date = today
 
         title = driver.find_element(By.CSS_SELECTOR, 'h2.large').text
         contents = driver.find_element(By.CSS_SELECTOR, 'a.article p.large').text
