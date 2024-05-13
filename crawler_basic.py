@@ -27,8 +27,9 @@ PWD = 's9hkfm$w'
 
 BOARD_NUMBER = '375132' # 성대 새내기 게시판
 BASE_URL = f'https://everytime.kr/{BOARD_NUMBER}'
-PAGE_FROM = 101 #  # 101, 1001
-PAGE_TO = 1001
+
+PAGE_FROM = 915 #  # 101, 1001
+PAGE_TO = 1015
 
 BREAK_DATE = '23/05/08'
 TODAY = datetime.today().strftime('%m/%d')
@@ -82,7 +83,7 @@ def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODA
     driver.find_element(By.CSS_SELECTOR, 'input[type="submit"]').click()
     driver.implicitly_wait(2)
 
-    sleep(3) # 페이지 로드 대기
+    sleep(2) # 페이지 로드 대기
 
     articles_data = []  
     hrefs = []
