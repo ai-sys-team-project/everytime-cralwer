@@ -28,8 +28,8 @@ PWD = 's9hkfm$w'
 BOARD_NUMBER = '375132' # 성대 새내기 게시판
 BASE_URL = f'https://everytime.kr/{BOARD_NUMBER}'
 
-PAGE_FROM = 915 #  # 101, 1001
-PAGE_TO = 1015
+PAGE_FROM = 1401 #  # 101, 1001
+PAGE_TO = 1800
 
 BREAK_DATE = '23/05/08'
 TODAY = datetime.today().strftime('%m/%d')
