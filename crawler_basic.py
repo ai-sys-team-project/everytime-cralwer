@@ -19,7 +19,7 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-import selenium.common.exceptions  # selenium 모듈 임포트
+import selenium.common.exceptions 
 
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -30,18 +30,18 @@ BOARD_NUMBER = '370444' # 인사캠 자유 게시판
 BASE_URL = f'https://everytime.kr/{BOARD_NUMBER}'
 
 PAGE_FROM = 101 #  # 101, 1001
-PAGE_TO = 300
+PAGE_TO = 103
 
 BREAK_DATE = '23/05/08'
 TODAY = datetime.today().strftime('%m/%d')
 
-driver = webdriver.Chrome(service= Service(ChromeDriverManager().install()))
-context = ssl._create_unverified_context()            
+option = webdriver.ChromeOptions()
+option.add_argument('--start-maximized')
+
+driver = webdriver.Chrome(service= Service(ChromeDriverManager().install()), options=option)
+context = ssl._create_unverified_context()      
 
 
-# def save_articles_to_xlsx(articles):
-#     df = pd.DataFrame(articles)
-#     df.to_excel(f'{BOARD_NUMBER}_{PAGE_FROM}-{PAGE_TO}.xlsx', index=False)
 
 def save_articles_to_xlsx(articles_data, file_name):
     df = pd.DataFrame(articles_data)
@@ -62,8 +62,6 @@ def extract_comments(div_comments):
     if len(comments) == 0:
         comments = None
     return comments
-
-
 
 
 def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODAY, page_from=PAGE_FROM, page_to=PAGE_TO):
@@ -153,18 +151,15 @@ def crawler(base_url=BASE_URL, id=ID, pwd=PWD, break_date=BREAK_DATE, today=TODA
             
             except selenium.common.exceptions.NoSuchElementException as e:
                 print(f"Error finding element: {e}")
-                # save_articles_to_xlsx(articles_data)
                 save_articles_to_xlsx(articles_data, f'{BOARD_NUMBER}_until_error.xlsx')
                 break
         
     except selenium.common.exceptions.NoSuchElementException as e:
         print(f"Error finding element: {e}")
-        # save_articles_to_xlsx(articles_data)
         save_articles_to_xlsx(articles_data, f'{BOARD_NUMBER}_until_error.xlsx')
 
     driver.quit()
 
-    # save_articles_to_xlsx(articles_data)
     save_articles_to_xlsx(articles_data, f'{BOARD_NUMBER}_{PAGE_FROM}-{PAGE_TO}.xlsx')
 
     end_time = datetime.now()
