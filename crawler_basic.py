@@ -29,8 +29,8 @@ PWD = 's9hkfm$w'
 BOARD_NUMBER = '370444' # 인사캠 자유 게시판
 BASE_URL = f'https://everytime.kr/{BOARD_NUMBER}'
 
-PAGE_FROM = 141 #  # 101, 1001
-PAGE_TO = 300
+PAGE_FROM = 301 #  # 101, 1001
+PAGE_TO = 600
 
 BREAK_DATE = '23/05/08'
 TODAY = datetime.today().strftime('%m/%d')
