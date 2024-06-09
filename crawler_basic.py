@@ -6,8 +6,8 @@
 인사캠 자유게시판: 370444 - 상지
 정보게시판: 375130 - 태웅
 
-아이디 seinundzeit1
-비밀번호 s9hkfm$w 
+
+
 """
 import datetime
 from datetime import datetime
@@ -23,8 +23,8 @@ import selenium.common.exceptions
 
 from webdriver_manager.chrome import ChromeDriverManager
 
-ID = 'seinundzeit1'
-PWD = 's9hkfm$w'
+ID = ''
+PWD = ''
 
 BOARD_NUMBER = '370444' # 인사캠 자유 게시판
 BASE_URL = f'https://everytime.kr/{BOARD_NUMBER}'
