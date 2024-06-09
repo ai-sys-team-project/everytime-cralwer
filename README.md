@@ -1,3 +1,5 @@
 ## Code for Data Scraping
-crawler_basic.py -> 데이터 크롤링 하는 파일
+Code for crawling : crawler_basic.py
+
+
 
